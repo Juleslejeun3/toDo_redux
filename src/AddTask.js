@@ -1,17 +1,24 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import * as allTask from './JS/Slice/taskSlice'
-
+import {add} from './JS/Slice/taskSlice'
+import { useState } from 'react'
 function AddTask() {
+    const [description, setDescription] = useState("")
     
     const dispatch = useDispatch()
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        dispatch(add(description));
+        setDescription("");
+    }
+    
        
     return (
         <div>
-        <form className='addTask' onSubmit={() => dispatch(allTask.task())}>    
+        <form onSubmit={handleSubmit}>    
         <div>   
         <label for="task">Tâche</label><br/>
-        <input type="textarea" name="task" rows='10px' cols='30px' onChange={() => dispatch(allTask.add())}/> 
+        <input type="text" placeholder='ajouter tâche' value={description} onChange={(e) => setDescription(e.target.value)}/> 
         </div>
         <div>    
         <input type="submit" name="add" value="Add" />

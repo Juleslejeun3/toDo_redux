@@ -1,19 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {toggle} from './JS/Slice/taskSlice'
 
-const mapStateToProps = state => {
-    return {
-        tasks: state.tasks
-    }
-}
- function Task(todo) {
-    
+
+
+
+export default function Task(props) {
+    const dispatch = useDispatch();
+    const {task} = props
     
     return (
         <div>
-        {todo.description}
-        
+        <input type="checkbox" checked={task.done} onChange={()=>dispatch(toggle())} />
+        {task.description}
         </div>
     )
 }
-export default connect(mapStateToProps)(Task)

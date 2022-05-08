@@ -1,16 +1,19 @@
 import React from 'react'
 import Task from './Task'
+import { useSelector } from 'react-redux'
 
-export default function TaskList(todo) {
-    
+function TaskList() {
+    const task = useSelector((state) => state.task);
     return (
-        <div>
-        <h3>Todo List</h3>
-        <ul>
-        <li>
-        <Task key={todo.id}/>
-        </li>
-        </ul>
+        <div className='list'>
+        {task.map((t) => (
+            <Task
+              task={t}
+              key={t.id}
+            />
+          ))}
         </div>
     )
 }
+
+export default TaskList;

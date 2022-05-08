@@ -8,7 +8,10 @@ function App() {
       <div>
         <AddTask/>
       </div>
+      <div>
       <TaskList/>
+      </div>
+        
     </div>
   );
 }
